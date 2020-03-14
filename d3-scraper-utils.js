@@ -50,6 +50,12 @@ function installScraperUtils()
     {
         return this.nodes().map(n => n && d3.select(n).callReturn(fn));
     };
+    // i don't think this should really ever be necessary but it's
+    // symmetric with map and mapS on the array prototype.
+    d3.selection.prototype.mapS = function(fn)
+    {
+        return d3.selectAll(this.nodes().map(n => n && d3.select(n).callReturn(fn)));
+    };
 
     // ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
     [].__proto__.out = function()
@@ -57,6 +63,9 @@ function installScraperUtils()
         console.log(JSON.stringify(this));
     };
 
+    [].__proto__.mapS = function(fn) {
+        return d3.select(this.map(v => d3.select(v).callReturn(fn)));
+    };
 }
 
 var script = document.createElement("script");
