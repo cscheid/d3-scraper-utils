@@ -12,14 +12,6 @@
 
  */
 
-var script = document.createElement("script");
-script.setAttribute("onload", function() {
-    installScraperUtils();
-});
-
-script.setAttribute("src", "https://d3js.org/d3.v5.js");
-document.body.appendChild(script);
-
 function installScraperUtils()
 {
     d3.all = arg => d3.selectAll(arg);
@@ -67,3 +59,7 @@ function installScraperUtils()
 
 }
 
+var script = document.createElement("script");
+script.onload = installScraperUtils;
+script.setAttribute("src", "https://d3js.org/d3.v5.js");
+document.body.appendChild(script);
