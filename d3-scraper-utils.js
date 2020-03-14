@@ -48,7 +48,7 @@ function installScraperUtils()
 
     d3.selection.prototype.map = function(fn)
     {
-        return this.nodes().map(n => d3.select(n).callReturn(fn));
+        return this.nodes().map(n => n && d3.select(n).callReturn(fn));
     };
 
     // ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
